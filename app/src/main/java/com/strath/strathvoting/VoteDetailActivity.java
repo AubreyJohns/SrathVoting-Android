@@ -33,7 +33,7 @@ import static com.strath.strathvoting.CandidatesDetailActivity.ARG_ITEM_ID;
  */
 public class VoteDetailActivity extends AppCompatActivity {
     // initialize list of candidates
-    List<RetroUsers> candidateDetails;
+    List<RetroUsers> candidatesList;
     // initialize list of a candidate's details
     List<RetroUsers> usersDetails;
 
@@ -59,7 +59,7 @@ public class VoteDetailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_vote_detail);
         final String position1 = getIntent().getStringExtra(ARG_ITEM_POSITION);
-        Log.e(TAG, "Candidates Position: "+position1);
+        Log.e(TAG, "Candidate's Position: "+position1);
 
         // Set Collapsing Toolbar layout to the screen
         final CollapsingToolbarLayout collapsingToolbar =(CollapsingToolbarLayout) findViewById(R.id.collapsing_toolbar);
@@ -81,13 +81,13 @@ public class VoteDetailActivity extends AppCompatActivity {
         call.enqueue(new Callback<List<RetroUsers>>() {
             @Override
             public void onResponse(Call<List<RetroUsers>> call, Response<List<RetroUsers>> response) {
-                candidateDetails=response.body();
+                candidatesList=response.body();
                 collapsingToolbar.setTitle(position1);
                 List<String> priceList = new ArrayList<String>();
-                for(int i=0;i<candidateDetails.size();i++){
-                    Log.e(TAG, "Candidates List: "+candidateDetails.get(i).getUser());
-                    priceList.add(candidateDetails.get(i).getUser());
-                    Picasso.get().load(url+candidateDetails.get(i).getImage()).placeholder(R.drawable.a).into(placePicutre);
+                for(int i=0;i<candidatesList.size();i++){
+                    Log.e(TAG, "Candidates List "+i+ ": "+candidatesList.get(i).getUser());
+                    priceList.add(candidatesList.get(i).getUser());
+                    Picasso.get().load(url+candidatesList.get(i).getImage()).placeholder(R.drawable.a).into(placePicutre);
                 }
                 int id = (1)*100;
                 for(String price : priceList){
@@ -124,20 +124,19 @@ public class VoteDetailActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(Call<List<RetroUsers>> call, Response<List<RetroUsers>> response) {
                         usersDetails=response.body();
-                        Log.e(TAG, "Details of candidate "+usersDetails);
 
                         for(int i=0;i<usersDetails.size();i++){
                             id=usersDetails.get(i).getId();
-                            name=usersDetails.get(i).getPosition();
+                            name=usersDetails.get(i).getUser();
                             position=usersDetails.get(i).getPosition();
                             manifesto=usersDetails.get(i).getManifesto();
                         }
                         // Start: Log to see selected candidate's details in logcat
-                        Log.e(TAG, "id of candidate "+id);
-                        Log.e(TAG, "name of candidate "+name);
-                        Log.e(TAG, "position of candidate "+position);
-                        Log.e(TAG, "manifesto of candidate "+manifesto);
-                        Log.e(TAG, "count of votes to cast "+votes);
+                        Log.e(TAG, "id of candidate selected: "+id);
+                        Log.e(TAG, "name of candidate selected: "+name);
+                        Log.e(TAG, "position of candidate selected: "+position);
+                        Log.e(TAG, "manifesto of candidate selected: "+manifesto);
+                        Log.e(TAG, "count of votes to cast selected: "+votes);
                         // End: Log to see a candidate's details in logcat
                     }
                     @Override
