@@ -2,7 +2,7 @@
 <resources>
     <color name="colorPrimary">#2a65b0</color>
     <color name="colorPrimaryDark">#14499e</color>
-    <color name="colorAccent">#ffffff</color>
+    <color name="colorAccent">#2c2f78</color>
     <!-- Colours based on Material Design.. Useful for reference purposes-->
     <!-- Purple -->
     <color name="material_purple_500">#8f3e97</color>
