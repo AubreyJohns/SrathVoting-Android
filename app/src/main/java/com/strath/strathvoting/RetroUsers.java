@@ -3,28 +3,21 @@ package com.strath.strathvoting;
 import com.google.gson.annotations.SerializedName;
 
 public class RetroUsers {
-    @SerializedName("id")
+
     private int id;
-    @SerializedName("name")
+
     private String name;
-    @SerializedName("position")
+
     private String position;
-    @SerializedName("manifesto")
+
     private String manifesto;
-    @SerializedName("image")
+
     private String image;
-    @SerializedName("votes")
+
     private int votes;
 
 
-    public RetroUsers(int id, String name,String position, String manifesto, String image, int votes) {
-        this.id = id;
-        this.name = name;
-        this.position = position;
-        this.manifesto = manifesto;
-        this.image = image;
-        this.votes = votes;
-    }
+
 
     public int getId() {
         return id;

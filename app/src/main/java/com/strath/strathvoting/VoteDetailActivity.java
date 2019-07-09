@@ -124,20 +124,42 @@ public class VoteDetailActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(Call<List<RetroUsers>> call, Response<List<RetroUsers>> response) {
                         usersDetails=response.body();
-
                         for(int i=0;i<usersDetails.size();i++){
                             id=usersDetails.get(i).getId();
                             name=usersDetails.get(i).getUser();
                             position=usersDetails.get(i).getPosition();
                             manifesto=usersDetails.get(i).getManifesto();
                         }
+
+                        // Start: Update selected candidate's details to add a vote
+                        ideaService = RetrofitClient.buildService(GetCandidate.class);
+                        Call<RetroUsers> updateRequest = ideaService.updateCandidate(
+                                id,
+                                name,
+                                position,
+                                manifesto,
+                                votes
+                        );
                         // Start: Log to see selected candidate's details in logcat
                         Log.e(TAG, "id of candidate selected: "+id);
                         Log.e(TAG, "name of candidate selected: "+name);
                         Log.e(TAG, "position of candidate selected: "+position);
                         Log.e(TAG, "manifesto of candidate selected: "+manifesto);
-                        Log.e(TAG, "count of votes to cast selected: "+votes);
+                        Log.e(TAG, "count of votes to cast: "+votes);
                         // End: Log to see a candidate's details in logcat
+                        updateRequest.enqueue(new Callback<RetroUsers>() {
+                            @Override
+                            public void onResponse(Call<RetroUsers> request, Response<RetroUsers> response) {
+                                Log.e(TAG, "Response: "+response);
+                                Toast.makeText(VoteDetailActivity.this, "Update Successful. " , Toast.LENGTH_SHORT).show();
+                            }
+
+                            @Override
+                            public void onFailure(Call<RetroUsers> request, Throwable t) {
+                                Toast.makeText(VoteDetailActivity.this, "Failed to update candidate.", Toast.LENGTH_SHORT).show();
+                            }
+                        });
+                        // End: Update selected candidate's details to add a vote
                     }
                     @Override
                     public void onFailure(Call<List<RetroUsers>> call, Throwable throwable) {
@@ -147,27 +169,6 @@ public class VoteDetailActivity extends AppCompatActivity {
                 });
                 // End: Get details of selected candidate
 
-                // Start: Update selected candidate's details to add a vote
-                ideaService = RetrofitClient.buildService(GetCandidate.class);
-                Call<RetroUsers> updateRequest = ideaService.updateCandidate(
-                        id,
-                        name,
-                        position,
-                        manifesto,
-                        votes
-                );
-                updateRequest.enqueue(new Callback<RetroUsers>() {
-                    @Override
-                    public void onResponse(Call<RetroUsers> request, Response<RetroUsers> response) {
-                        Toast.makeText(VoteDetailActivity.this, "Update Successful. " , Toast.LENGTH_SHORT).show();
-                    }
-
-                    @Override
-                    public void onFailure(Call<RetroUsers> request, Throwable t) {
-                        Toast.makeText(VoteDetailActivity.this, "Failed to update candidate.", Toast.LENGTH_SHORT).show();
-                    }
-                });
-                // End: Update selected candidate's details to add a vote
 
             }
         });

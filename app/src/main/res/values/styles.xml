@@ -6,6 +6,8 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:radioButtonStyle">@style/MyRadioButton</item>
+        <item name="android:textAppearance">@style/textStyle</item>
 
     </style>
 
@@ -13,6 +15,18 @@
     <style name="AppTheme.NoActionBar" parent="Theme.AppCompat.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="MyRadioButton" parent="Widget.AppCompat.CompoundButton.RadioButton">
+        <item name="android:textSize">25dp</item>
+        <item name="android:colorControlNormal">#64dd17</item>
+        <item name="android:colorControlActivated">#460745</item>
+        <item name="android:colorControlHighlight">#c51162</item>
+        <item name="android:textColorPrimaryDisableOnly">#00838f</item>
+    </style>
+
+    <style name="textStyle" parent="TextAppearance.AppCompat">
+        <item name="android:textSize">25dp</item>
     </style>
 
     <style name="AppTheme.Dark" parent="Theme.AppCompat.Light.NoActionBar">

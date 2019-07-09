@@ -11,6 +11,7 @@ import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.Headers;
 import retrofit2.http.POST;
+import retrofit2.http.PUT;
 import retrofit2.http.Path;
 
 public interface GetCandidate {
@@ -25,7 +26,7 @@ public interface GetCandidate {
             "Content-type:application/x-www-form-urlencoded"
     })
     @FormUrlEncoded
-    @POST("candidates/{id}")
+    @PUT("candidates/{id}")
     Call<RetroUsers> updateCandidate(
             @Path("id")int id,
             @Field("name")String name,

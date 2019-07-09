@@ -79,6 +79,7 @@ public class ResultsDetailActivity extends AppCompatActivity {
                     textView1.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT,
                             LinearLayout.LayoutParams.WRAP_CONTENT));
                     textView1.setText(price);
+                    textView1.setTextAppearance(ResultsDetailActivity.this,R.style.textStyle);
                     linearLayout.addView(textView1);
                 }
 
