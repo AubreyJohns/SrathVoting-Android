@@ -1,7 +1,5 @@
 package com.strath.strathvoting;
 
-import android.support.v7.app.AppCompatActivity;
-
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -15,7 +13,6 @@ import retrofit2.Response;
 import java.io.IOException;
 import java.util.List;
 
-import android.os.Bundle;
 import android.support.v4.app.Fragment;
 
 import android.view.LayoutInflater;
@@ -27,7 +24,7 @@ import android.view.ViewGroup;
  * Provides UI for the view with List.
  */
 public class CandidatesFragment extends Fragment {
-    private MyAdapter myAdapter;
+    private CandidatesAdapter candidatesAdapter;
     private RecyclerView myRecyclerView;
     private RecyclerView.LayoutManager layoutManager;
     private List<RetroUsers> usersList;
@@ -51,8 +48,8 @@ public class CandidatesFragment extends Fragment {
             public void onResponse(Call<List<RetroUsers>> call, Response<List<RetroUsers>> response) {
                 if(response.isSuccessful()){
                 usersList=response.body();
-                myAdapter = new MyAdapter(myRecyclerView.getContext(),usersList);
-                myRecyclerView.setAdapter(myAdapter);
+                candidatesAdapter = new CandidatesAdapter(myRecyclerView.getContext(),usersList);
+                myRecyclerView.setAdapter(candidatesAdapter);
                 }else if(response.code()==401){
                     Toast.makeText(getActivity(),"Your session has expired",Toast.LENGTH_LONG).show();
                 }else{

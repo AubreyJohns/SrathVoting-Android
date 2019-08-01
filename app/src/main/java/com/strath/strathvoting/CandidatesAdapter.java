@@ -11,12 +11,12 @@ import com.squareup.picasso.Picasso;
 import java.util.List;
 import de.hdodenhof.circleimageview.CircleImageView;
 
-public class MyAdapter extends RecyclerView.Adapter<MyAdapter.CustomViewHolder> {
+public class CandidatesAdapter extends RecyclerView.Adapter<CandidatesAdapter.CustomViewHolder> {
     String url="https://red-mountie-10018.herokuapp.com/uploads/";
     private List<RetroUsers> dataList;
     private Context context;
 
-    public MyAdapter(Context context,List<RetroUsers> dataList){
+    public CandidatesAdapter(Context context, List<RetroUsers> dataList){
         this.dataList = dataList;
         this.context=context;
     }
@@ -39,7 +39,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.CustomViewHolder> 
 
     public CustomViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
-        View view = layoutInflater.inflate(R.layout.row_layout, parent, false);
+        View view = layoutInflater.inflate(R.layout.candidates_layout, parent, false);
         return new CustomViewHolder(view);
     }
 

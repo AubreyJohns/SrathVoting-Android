@@ -1,7 +1,5 @@
 package com.strath.strathvoting;
 
-import com.strath.strathvoting.Models.VoteChild;
-
 import java.util.List;
 
 import retrofit2.Call;

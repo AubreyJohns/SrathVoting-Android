@@ -1,7 +1,4 @@
 package com.strath.strathvoting;
-
-import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -11,15 +8,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
-
-import com.bignerdranch.expandablerecyclerview.Model.ParentObject;
-import com.strath.strathvoting.Adapter.VoteAdapter;
-import com.strath.strathvoting.Models.VoteChild;
-import com.strath.strathvoting.Models.VoteCreator;
-import com.strath.strathvoting.Models.VoteParent;
-
 import java.io.IOException;
-import java.util.ArrayList;
+
 import java.util.List;
 
 import retrofit2.Call;
@@ -29,7 +19,7 @@ import retrofit2.Response;
 public class VoteFragment extends Fragment {
     private RecyclerView myRecyclerView;
     private RecyclerView.LayoutManager layoutManager;
-    PackageRecyclerViewAdapter recyclerViewAdapter;
+    VoteAdapter recyclerViewAdapter;
     private List<VoteList> positionsList;
     private GetResults service;
     private static final String TAG = "VoteFragment";
@@ -51,7 +41,7 @@ public class VoteFragment extends Fragment {
             public void onResponse(Call<List<VoteList>> call, Response<List<VoteList>> response) {
                 if(response.isSuccessful()){
                     positionsList=response.body();
-                    recyclerViewAdapter = new PackageRecyclerViewAdapter(myRecyclerView.getContext(),positionsList);
+                    recyclerViewAdapter = new VoteAdapter(myRecyclerView.getContext(),positionsList);
                     myRecyclerView.setAdapter(recyclerViewAdapter);
                 }else if(response.code()==401){
                     Toast.makeText(getActivity(),"Your session has expired",Toast.LENGTH_LONG).show();

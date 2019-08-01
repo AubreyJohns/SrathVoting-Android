@@ -11,15 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
-
-import com.bignerdranch.expandablerecyclerview.Model.ParentObject;
-import com.strath.strathvoting.Adapter.VoteAdapter;
-import com.strath.strathvoting.Models.VoteChild;
-import com.strath.strathvoting.Models.VoteCreator;
-import com.strath.strathvoting.Models.VoteParent;
-
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;
