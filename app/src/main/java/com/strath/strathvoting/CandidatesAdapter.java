@@ -36,7 +36,6 @@ public class CandidatesAdapter extends RecyclerView.Adapter<CandidatesAdapter.Cu
     }
 
     @Override
-
     public CustomViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
         View view = layoutInflater.inflate(R.layout.candidates_layout, parent, false);
@@ -44,7 +43,6 @@ public class CandidatesAdapter extends RecyclerView.Adapter<CandidatesAdapter.Cu
     }
 
     @Override
-
     public void onBindViewHolder(final CustomViewHolder holder, int position) {
         holder.mItem = dataList.get(position);
         if(dataList.get(position).getImage()!=null){

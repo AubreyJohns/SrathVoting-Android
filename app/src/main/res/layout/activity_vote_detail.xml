@@ -78,7 +78,6 @@
                 android:text="Vote"
                 android:background="@color/colorPrimaryDark"
                 android:textColor="@color/white"/>
-
         </LinearLayout>
     </android.support.v4.widget.NestedScrollView>
 </android.support.design.widget.CoordinatorLayout>

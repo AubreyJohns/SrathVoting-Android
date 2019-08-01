@@ -1,46 +1,29 @@
 package com.strath.strathvoting;
 
 import com.squareup.picasso.Picasso;
-import com.strath.strathvoting.RetroUsers;
-import com.strath.strathvoting.GetData;
-import android.content.res.Resources;
-import android.content.res.TypedArray;
 import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
-import android.widget.TextView;
 import android.widget.Toast;
-
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-import static com.strath.strathvoting.CandidatesDetailActivity.ARG_ITEM_ID;
-
-/**
- * Provides UI for the Detail page with Collapsing Toolbar.
- */
 public class VoteDetailActivity extends AppCompatActivity {
-    // initialize list of candidates
     List<RetroUsers> candidatesList;
-    // initialize list of a candidate's details
     List<RetroUsers> usersDetails;
-
     private GetCandidate service;
     private GetCandidate detailService;
     private GetCandidate ideaService;
-
     private RadioButton rb;
     // Start: initialize a candidate's details in variables
     private int id;
@@ -60,12 +43,11 @@ public class VoteDetailActivity extends AppCompatActivity {
         setContentView(R.layout.activity_vote_detail);
         final String position1 = getIntent().getStringExtra(ARG_ITEM_POSITION);
         Log.e(TAG, "Candidate's Position: "+position1);
-
         // Set Collapsing Toolbar layout to the screen
         final CollapsingToolbarLayout collapsingToolbar =(CollapsingToolbarLayout) findViewById(R.id.collapsing_toolbar);
         final RadioGroup priceGroup = (RadioGroup) findViewById(R.id.price_grp);
         final Button vote= (Button)findViewById(R.id.btn_login);
-        final ImageView placePicutre = (ImageView) findViewById(R.id.image);
+        final ImageView placePicture = (ImageView) findViewById(R.id.image);
         // Start: setOnCheckedChangeListener
         priceGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
@@ -88,7 +70,7 @@ public class VoteDetailActivity extends AppCompatActivity {
                 for(int i=0;i<candidatesList.size();i++){
                     Log.e(TAG, "Candidates List "+i+ ": "+candidatesList.get(i).getUser());
                     priceList.add(candidatesList.get(i).getUser());
-                    Picasso.get().load(url+candidatesList.get(i).getImage()).placeholder(R.drawable.a).into(placePicutre);
+                    Picasso.get().load(url+candidatesList.get(i).getImage()).placeholder(R.drawable.a).into(placePicture);
                 }
                 int id = (1)*100;
                 for(String price : priceList){

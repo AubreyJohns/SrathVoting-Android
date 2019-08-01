@@ -5,24 +5,16 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.widget.Toast;
-
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-
 import java.io.IOException;
 import java.util.List;
-
 import android.support.v4.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-
-/**
- * Provides UI for the view with List.
- */
 public class CandidatesFragment extends Fragment {
     private CandidatesAdapter candidatesAdapter;
     private RecyclerView myRecyclerView;
@@ -69,5 +61,4 @@ public class CandidatesFragment extends Fragment {
         });
         return myRecyclerView;
     }
-
 }

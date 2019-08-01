@@ -1,7 +1,5 @@
 package com.strath.strathvoting;
 
-import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -13,7 +11,6 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 import java.io.IOException;
 import java.util.List;
-
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -26,10 +23,8 @@ public class ResultsFragment extends Fragment {
     private GetResults service;
     private static final String TAG = "VoteFragment";
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        //super.onCreate(savedInstanceState);
         myRecyclerView = (RecyclerView) inflater.inflate(R.layout.recycler_view, container, false);
         layoutManager = new LinearLayoutManager(getActivity());
         myRecyclerView.setHasFixedSize(true);
@@ -62,9 +57,6 @@ public class ResultsFragment extends Fragment {
                 }
             }
         });
-
         return myRecyclerView;
-
     }
-
 }

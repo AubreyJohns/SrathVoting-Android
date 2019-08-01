@@ -10,15 +10,10 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
-
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Target;
-
 import java.util.List;
 
 public class ResultsAdapter extends RecyclerView.Adapter<ResultsAdapter.ViewHolder> {
@@ -43,17 +38,14 @@ public class ResultsAdapter extends RecyclerView.Adapter<ResultsAdapter.ViewHold
         holder.mItem = dataList.get(position);
         holder.packageName.setText(dataList.get(position).getPosition());
         Picasso.get().load(url+dataList.get(position).getImage()).placeholder(R.drawable.a_avator).into(new Target(){
-
             @Override
             public void onBitmapLoaded(Bitmap bitmap, Picasso.LoadedFrom from) {
                 holder.rLayout.setBackground(new BitmapDrawable(context.getResources(), bitmap));
             }
-
             @Override
             public void onBitmapFailed(Exception e, Drawable errorDrawable) {
                 Log.d("TAG", "FAILED");
             }
-
             @Override
             public void onPrepareLoad(final Drawable placeHolderDrawable) {
                 Log.d("TAG", "Prepare Load");
@@ -79,13 +71,11 @@ public class ResultsAdapter extends RecyclerView.Adapter<ResultsAdapter.ViewHold
         public VoteList mItem;
         public TextView packageName;
         RelativeLayout rLayout;
-        //public RadioGroup priceGroup;
 
         public ViewHolder(View itemView) {
             super(itemView);
             packageName = (TextView) itemView.findViewById(R.id.package_name);
             rLayout=(RelativeLayout) itemView.findViewById(R.id.relativeLayout);
-
         }
     }
 }
