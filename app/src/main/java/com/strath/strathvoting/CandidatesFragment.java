@@ -12,6 +12,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+import java.io.IOException;
 import java.util.List;
 
 import android.os.Bundle;
@@ -48,15 +49,25 @@ public class CandidatesFragment extends Fragment {
 
             @Override
             public void onResponse(Call<List<RetroUsers>> call, Response<List<RetroUsers>> response) {
+                if(response.isSuccessful()){
                 usersList=response.body();
                 myAdapter = new MyAdapter(myRecyclerView.getContext(),usersList);
                 myRecyclerView.setAdapter(myAdapter);
+                }else if(response.code()==401){
+                    Toast.makeText(getActivity(),"Your session has expired",Toast.LENGTH_LONG).show();
+                }else{
+                    Toast.makeText(getActivity(),"Failed to retrieve items",Toast.LENGTH_LONG).show();
+                }
             }
 
             @Override
             public void onFailure(Call<List<RetroUsers>> call, Throwable throwable) {
-                Log.e(TAG, "onFailure: "+throwable.getMessage());
-                Toast.makeText(getActivity(), "Unable to load candidates"+throwable.getMessage(), Toast.LENGTH_LONG).show();
+                if(throwable instanceof IOException){
+                    Toast.makeText(getActivity(),"A connection error occurred",Toast.LENGTH_LONG).show();
+                }else {
+                    Log.e(TAG, "onFailure: " + throwable.getMessage());
+                    Toast.makeText(getActivity(), "Unable to load candidates" + throwable.getMessage(), Toast.LENGTH_LONG).show();
+                }
             }
         });
         return myRecyclerView;

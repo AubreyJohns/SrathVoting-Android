@@ -14,6 +14,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.IOException;
 import java.util.List;
 
 import retrofit2.Call;
@@ -55,19 +56,27 @@ public class CandidatesDetailActivity extends AppCompatActivity {
 
             @Override
             public void onResponse(Call<RetroUsers> call, Response<RetroUsers> response) {
+                if(response.isSuccessful()){
                 candidateDetails=response.body();
                 collapsingToolbar.setTitle(candidateDetails.getUser());
                 placeDetail.setText(candidateDetails.getPosition());
                 placeLocation.setText(candidateDetails.getManifesto());
                 Picasso.get().load(url+candidateDetails.getImage()).placeholder(R.drawable.a).into(placePicutre);
-                //placePicutre.setImageDrawable(placePictures.getDrawable(postion % placePictures.length()));
-
+                }else if(response.code()==401){
+                    Toast.makeText(CandidatesDetailActivity.this,"Your session has expired",Toast.LENGTH_LONG).show();
+                }else{
+                    Toast.makeText(CandidatesDetailActivity.this,"Failed to retrieve items",Toast.LENGTH_LONG).show();
+                }
             }
 
             @Override
             public void onFailure(Call<RetroUsers> call, Throwable throwable) {
-                Log.e(TAG, "onFailure: "+throwable.getMessage());
-                Toast.makeText(CandidatesDetailActivity.this, "Unable to load candidates details"+throwable.getMessage(), Toast.LENGTH_LONG).show();
+                if(throwable instanceof IOException){
+                    Toast.makeText(CandidatesDetailActivity.this,"A connection error occurred",Toast.LENGTH_LONG).show();
+                }else {
+                    Log.e(TAG, "onFailure: " + throwable.getMessage());
+                    Toast.makeText(CandidatesDetailActivity.this, "Unable to load candidates details" + throwable.getMessage(), Toast.LENGTH_LONG).show();
+                }
             }
         });
 

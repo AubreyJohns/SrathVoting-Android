@@ -81,6 +81,7 @@ public class VoteDetailActivity extends AppCompatActivity {
         call.enqueue(new Callback<List<RetroUsers>>() {
             @Override
             public void onResponse(Call<List<RetroUsers>> call, Response<List<RetroUsers>> response) {
+                if(response.isSuccessful()){
                 candidatesList=response.body();
                 collapsingToolbar.setTitle(position1);
                 List<String> priceList = new ArrayList<String>();
@@ -96,11 +97,20 @@ public class VoteDetailActivity extends AppCompatActivity {
                     rb.setText(price);
                     priceGroup.addView(rb);
                 }
+                }else if(response.code()==401){
+                    Toast.makeText(VoteDetailActivity.this,"Your session has expired",Toast.LENGTH_LONG).show();
+                }else{
+                    Toast.makeText(VoteDetailActivity.this,"Failed to retrieve items",Toast.LENGTH_LONG).show();
+                }
             }
             @Override
             public void onFailure(Call<List<RetroUsers>> call, Throwable throwable) {
-                Log.e(TAG, "onFailure: "+throwable.getMessage());
-                Toast.makeText(VoteDetailActivity.this, "Unable to load candidates details"+throwable.getMessage(), Toast.LENGTH_LONG).show();
+                if(throwable instanceof IOException){
+                    Toast.makeText(VoteDetailActivity.this,"A connection error occurred",Toast.LENGTH_LONG).show();
+                }else {
+                    Log.e(TAG, "onFailure: " + throwable.getMessage());
+                    Toast.makeText(VoteDetailActivity.this, "Unable to load candidates details" + throwable.getMessage(), Toast.LENGTH_LONG).show();
+                }
             }
         });
         // End of code to dynamically fill radio group with candidates
@@ -123,6 +133,7 @@ public class VoteDetailActivity extends AppCompatActivity {
                 call.enqueue(new Callback<List<RetroUsers>>() {
                     @Override
                     public void onResponse(Call<List<RetroUsers>> call, Response<List<RetroUsers>> response) {
+                        if(response.isSuccessful()){
                         usersDetails=response.body();
                         for(int i=0;i<usersDetails.size();i++){
                             id=usersDetails.get(i).getId();
@@ -160,11 +171,20 @@ public class VoteDetailActivity extends AppCompatActivity {
                             }
                         });
                         // End: Update selected candidate's details to add a vote
+                        }else if(response.code()==401){
+                            Toast.makeText(VoteDetailActivity.this,"Your session has expired",Toast.LENGTH_LONG).show();
+                        }else{
+                            Toast.makeText(VoteDetailActivity.this,"Failed to retrieve items",Toast.LENGTH_LONG).show();
+                        }
                     }
                     @Override
                     public void onFailure(Call<List<RetroUsers>> call, Throwable throwable) {
-                        Log.e(TAG, "onFailure: "+throwable.getMessage());
-                        Toast.makeText(VoteDetailActivity.this, "Unable to load candidates"+throwable.getMessage(), Toast.LENGTH_LONG).show();
+                        if(throwable instanceof IOException){
+                            Toast.makeText(VoteDetailActivity.this,"A connection error occurred",Toast.LENGTH_LONG).show();
+                        }else {
+                            Log.e(TAG, "onFailure: " + throwable.getMessage());
+                            Toast.makeText(VoteDetailActivity.this, "Unable to load candidates" + throwable.getMessage(), Toast.LENGTH_LONG).show();
+                        }
                     }
                 });
                 // End: Get details of selected candidate

@@ -18,6 +18,7 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -64,6 +65,7 @@ public class ResultsDetailActivity extends AppCompatActivity {
 
             @Override
             public void onResponse(Call<List<RetroUsers>> call, Response<List<RetroUsers>> response) {
+                if(response.isSuccessful()){
                 candidateDetails=response.body();
                 collapsingToolbar.setTitle(position);
                 List<String> priceList = new ArrayList<String>();
@@ -82,18 +84,21 @@ public class ResultsDetailActivity extends AppCompatActivity {
                     textView1.setTextAppearance(ResultsDetailActivity.this,R.style.textStyle);
                     linearLayout.addView(textView1);
                 }
-
-                //placeDetail.setText(candidateDetails.getPosition());
-                //placeLocation.setText(candidateDetails.getManifesto());
-                //Picasso.get().load(url+candidateDetails.getImage()).placeholder(R.drawable.a).into(placePicutre);
-                //placePicutre.setImageDrawable(placePictures.getDrawable(postion % placePictures.length()));
-
+                }else if(response.code()==401){
+                    Toast.makeText(ResultsDetailActivity.this,"Your session has expired",Toast.LENGTH_LONG).show();
+                }else{
+                    Toast.makeText(ResultsDetailActivity.this,"Failed to retrieve items",Toast.LENGTH_LONG).show();
+                }
             }
 
             @Override
             public void onFailure(Call<List<RetroUsers>> call, Throwable throwable) {
-                Log.e(TAG, "onFailure: "+throwable.getMessage());
-                Toast.makeText(ResultsDetailActivity.this, "Unable to load candidates details"+throwable.getMessage(), Toast.LENGTH_LONG).show();
+                if(throwable instanceof IOException){
+                    Toast.makeText(ResultsDetailActivity.this,"A connection error occurred",Toast.LENGTH_LONG).show();
+                }else {
+                    Log.e(TAG, "onFailure: " + throwable.getMessage());
+                    Toast.makeText(ResultsDetailActivity.this, "Unable to load candidates details" + throwable.getMessage(), Toast.LENGTH_LONG).show();
+                }
             }
         });
     }

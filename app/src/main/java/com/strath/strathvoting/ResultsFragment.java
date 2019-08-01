@@ -18,6 +18,7 @@ import com.strath.strathvoting.Models.VoteChild;
 import com.strath.strathvoting.Models.VoteCreator;
 import com.strath.strathvoting.Models.VoteParent;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -48,15 +49,25 @@ public class ResultsFragment extends Fragment {
 
             @Override
             public void onResponse(Call<List<VoteList>> call, Response<List<VoteList>> response) {
+                if(response.isSuccessful()){
                 positionsList=response.body();
                 resultsAdapter = new ResultsAdapter(myRecyclerView.getContext(),positionsList);
                 myRecyclerView.setAdapter(resultsAdapter);
+                }else if(response.code()==401){
+                    Toast.makeText(getActivity(),"Your session has expired",Toast.LENGTH_LONG).show();
+                }else{
+                    Toast.makeText(getActivity(),"Failed to retrieve items",Toast.LENGTH_LONG).show();
+                }
             }
 
             @Override
             public void onFailure(Call<List<VoteList>> call, Throwable throwable) {
-                Log.e(TAG, "onFailure: "+throwable.getMessage());
-                Toast.makeText(getActivity(), "Unable to load positions"+throwable.getMessage(), Toast.LENGTH_LONG).show();
+                if(throwable instanceof IOException){
+                    Toast.makeText(getActivity(),"A connection error occurred",Toast.LENGTH_LONG).show();
+                }else {
+                    Log.e(TAG, "onFailure: " + throwable.getMessage());
+                    Toast.makeText(getActivity(), "Unable to load positions" + throwable.getMessage(), Toast.LENGTH_LONG).show();
+                }
             }
         });
 
