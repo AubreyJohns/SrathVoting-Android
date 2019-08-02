@@ -39,7 +39,7 @@
             >
             <!-- Row 1 -->
             <!-- Column 1 -->
-            <android.support.v7.widget.CardView
+            <androidx.cardview.widget.CardView
                 android:id="@+id/profile_card_view"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
@@ -73,9 +73,9 @@
                         android:textSize="18sp"
                         android:textStyle="bold" />
                 </LinearLayout>
-            </android.support.v7.widget.CardView>
+            </androidx.cardview.widget.CardView>
             <!-- Column 2 -->
-            <android.support.v7.widget.CardView
+            <androidx.cardview.widget.CardView
                 android:id="@+id/fees_card_view"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
@@ -108,10 +108,10 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
                 </LinearLayout>
-            </android.support.v7.widget.CardView>
+            </androidx.cardview.widget.CardView>
             <!-- Row 2 -->
             <!-- Column 1 -->
-            <android.support.v7.widget.CardView
+            <androidx.cardview.widget.CardView
                 android:id="@+id/coursework_card_view"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
@@ -144,9 +144,9 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
                 </LinearLayout>
-            </android.support.v7.widget.CardView>
+            </androidx.cardview.widget.CardView>
             <!-- Column 2 -->
-            <android.support.v7.widget.CardView
+            <androidx.cardview.widget.CardView
                 android:id="@+id/attendance_card_view"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
@@ -179,10 +179,10 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
                 </LinearLayout>
-            </android.support.v7.widget.CardView>
+            </androidx.cardview.widget.CardView>
             <!-- Row 3 -->
             <!-- Column 1 -->
-            <android.support.v7.widget.CardView
+            <androidx.cardview.widget.CardView
                 android:id="@+id/timetable_card_view"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
@@ -215,10 +215,10 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
                 </LinearLayout>
-            </android.support.v7.widget.CardView>
+            </androidx.cardview.widget.CardView>
 
             <!-- Column 2 -->
-            <android.support.v7.widget.CardView
+            <androidx.cardview.widget.CardView
                 android:id="@+id/library_card_view"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
@@ -251,12 +251,12 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
                 </LinearLayout>
-            </android.support.v7.widget.CardView>
+            </androidx.cardview.widget.CardView>
             <!-- Row 4 -->
 
             <!-- Column 1 -->
 
-            <android.support.v7.widget.CardView
+            <androidx.cardview.widget.CardView
                 android:id="@+id/info_card_view"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
@@ -289,10 +289,10 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
                 </LinearLayout>
-            </android.support.v7.widget.CardView>
+            </androidx.cardview.widget.CardView>
             <!--column 2-->
 
-            <android.support.v7.widget.CardView
+            <androidx.cardview.widget.CardView
                 android:id="@+id/voting_card_view"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
@@ -326,16 +326,16 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
                 </LinearLayout>
-            </android.support.v7.widget.CardView>
+            </androidx.cardview.widget.CardView>
         </GridLayout>
 
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/logout"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/mainGrid"
             android:background="@color/material_blue_900"
             android:text="Logout"
-            android:textColor="#ffffff" />
+            android:textColor="@color/white"/>
     </LinearLayout>
 </RelativeLayout>

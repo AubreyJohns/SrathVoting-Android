@@ -1,23 +1,12 @@
 package com.strath.strathvoting;
 
-import com.google.gson.annotations.SerializedName;
-
 public class RetroUsers {
-
     private int id;
-
     private String name;
-
     private String position;
-
     private String manifesto;
-
     private String image;
-
     private int votes;
-
-
-
 
     public int getId() {
         return id;
@@ -38,7 +27,6 @@ public class RetroUsers {
         return votes;
     }
 
-
     public void setId(int id) {
         this.id = id;
     }
@@ -57,5 +45,4 @@ public class RetroUsers {
     public void setVotes(int votes) {
         this.votes = votes;
     }
-
 }

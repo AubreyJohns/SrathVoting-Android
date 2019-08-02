@@ -1,14 +1,10 @@
 package com.strath.strathvoting;
 
-import com.google.gson.Gson;
-
 import java.util.concurrent.TimeUnit;
-
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
-import retrofit2.converter.scalars.ScalarsConverterFactory;
 
 public class RetrofitClient {
     private static final String BASE_URL = "https://red-mountie-10018.herokuapp.com/api/";
